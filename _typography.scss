@@ -1,0 +1,78 @@
+@import url('http://roboto-webfont.googlecode.com/svn/trunk/roboto.all.css'); 
+
+$_gdm-type-styles: (
+  display4: (
+    font-family: "Roboto light",
+    font-size: 8em,
+    color: rgba(black, .54),
+  ),
+  display3: (
+    font-family: "Roboto regular",
+    font-size: 4em,
+    color: rgba(black, .54),
+  ),
+  display2: (
+    font-family: "Roboto regular",
+    font-size: 3.21428571em,
+    color: rgba(black, .54),
+  ),
+  display1: (
+    font-family: "Roboto regular",
+    font-size: 2.42857143em,
+    color: rgba(black, .54),
+  ),
+  headline: (
+    font-family: "Roboto regular",
+    font-size: 1.71428571em,
+    color: rgba(black, .87),
+  ),
+  title: (
+    font-family: "Roboto medium",
+    font-size: 1.42857143em,
+    color: rgba(black, .87),
+  ),
+  subhead: (
+    font-family: "Roboto regular",
+    font-size: 1.14285714em,
+    color: rgba(black, .87),
+  ),
+  body2: (
+    font-family: "Roboto medium",
+    font-size: 1em,
+    color: rgba(black, .87),
+  ),
+  body1: (
+    font-family: "Roboto regular",
+    font-size: 1em,
+    color: rgba(black, .87),
+  ),
+  caption: (
+    font-family: "Roboto regular",
+    font-size: .85714286em,
+    color: rgba(black, .54),
+  ),
+  menu: (
+    font-family: "Roboto medium",
+    font-size: 1em,
+    color: rgba(black, .87),
+  ),
+  button: (
+    font-family: "Roboto medium",
+    font-size: 1em,
+    text-transform: uppercase,
+    color: rgba(black, .87),
+  )
+);
+
+@mixin gdm-type-style($type) {
+  $style: map-get($_gdm-type-styles, $type);
+  @each $property, $value in $style {
+    #{$property}: $value;
+  }
+}
+
+// TEST
+
+body {
+  @include gdm-type-style(display4);
+}

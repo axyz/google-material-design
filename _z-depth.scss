@@ -1,0 +1,78 @@
+$_gdm-z-depths: (
+  1: (
+    top-color: rgba(black, .12),
+    top-x-offset: 0,
+    top-y-offset: 1,
+    top-blur: 1.5,
+    bottom-color: rgba(black, .24),
+    bottom-x-offset: 0,
+    bottom-y-offset: 1,
+    bottom-blur: 1
+  ),
+  2: (
+    top-color: rgba(black, .16),
+    top-x-offset: 0,
+    top-y-offset: 3,
+    top-blur: 3,
+    bottom-color: rgba(black, .23),
+    bottom-x-offset: 0,
+    bottom-y-offset: 3,
+    bottom-blur: 3
+  ),
+  3: (
+    top-color: rgba(black, .19),
+    top-x-offset: 0,
+    top-y-offset: 10,
+    top-blur: 10, 
+    bottom-color: rgba(black, .23),
+    bottom-x-offset: 0,
+    bottom-y-offset: 6,
+    bottom-blur: 3
+  ),
+  4: (
+    top-color: rgba(black, .25),
+    top-x-offset: 0,
+    top-y-offset: 14,
+    top-blur: 14,
+    bottom-color: rgba(black, .22),
+    bottom-x-offset: 0,
+    bottom-y-offset: 10,
+    bottom-blur: 5
+  ),
+  5: (
+    top-color: rgba(black, .30),
+    top-x-offset: 0,
+    top-y-offset: 19,
+    top-blur: 19,
+    bottom-color: rgba(black, .22),
+    bottom-x-offset: 0,
+    bottom-y-offset: 15,
+    bottom-blur: 6
+  )
+);
+
+@mixin _gmd-box-shadow($t-top, $t-left, $t-blur, $t-color, $b-top, $b-left, $b-blur, $b-color) {
+  -webkit-box-shadow: $t-top $t-left $t-blur $t-color, $b-top $b-left $b-blur $b-color;
+  -moz-box-shadow: $t-top $t-left $t-blur $t-color, $b-top $b-left $b-blur $b-color;
+  box-shadow: $t-top $t-left $t-blur $t-color, $b-top $b-left $b-blur $b-color;
+}
+
+@mixin gmd-z-depth($depth) {
+  $settings: map-get($_gdm-z-depths, $depth);
+  $t-top: round(map-get($settings, top-x-offset)) * -1;
+  $t-left: round(map-get($settings, top-y-offset));
+  $t-blur: round(map-get($settings, top-blur));
+  $t-color: map-get($settings, top-color);
+  $b-top: round(map-get($settings, bottom-x-offset)) * -1;
+  $b-left: round(map-get($settings, bottom-y-offset));
+  $b-blur: round(map-get($settings, bottom-blur));
+  $b-color: map-get($settings, bottom-color);
+  
+  @include _gmd-box-shadow($t-top, $t-left, $t-blur, $t-color, $b-top, $b-left, $b-blur, $b-color);
+}
+
+// TEST
+
+div {
+  @include gmd-z-depth(3);
+}
