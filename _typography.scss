@@ -1,6 +1,6 @@
 @import url('http://roboto-webfont.googlecode.com/svn/trunk/roboto.all.css'); 
 
-$_gdm-type-styles: (
+$_gmd-type-styles: (
   display4: (
     font-family: "Roboto light",
     font-size: 8em,
@@ -64,8 +64,8 @@ $_gdm-type-styles: (
   )
 );
 
-@mixin gdm-type-style($type) {
-  $style: map-get($_gdm-type-styles, $type);
+@mixin gmd-type-style($type) {
+  $style: map-get($_gmd-type-styles, $type);
   @each $property, $value in $style {
     #{$property}: $value;
   }
@@ -74,5 +74,5 @@ $_gdm-type-styles: (
 // TEST
 
 body {
-  @include gdm-type-style(display4);
+  @include gmd-type-style(display4);
 }
